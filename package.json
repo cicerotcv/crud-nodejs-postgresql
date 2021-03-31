@@ -1,0 +1,31 @@
+{
+   "name": "crud-node-postgresql",
+   "version": "1.0.0",
+   "main": "index.js",
+   "scripts": {
+      "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
+      "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
+      "migation:run": "ts-node-dev node_modules/typeorm/cli.js migration:run"
+   },
+   "repository": "https://github.com/cicerotcv/crud-nodejs-postgresql.git",
+   "author": "cicerotcv <elm.tiago@gmail.com>",
+   "license": "MIT",
+   "dependencies": {
+      "@types/uuid": "^8.3.0",
+      "express": "^4.17.1",
+      "morgan": "^1.10.0",
+      "pg": "^8.4.0",
+      "reflect-metadata": "^0.1.10",
+      "typeorm": "0.2.32",
+      "uuid": "^8.3.2"
+   },
+   "devDependencies": {
+      "@types/express": "^4.17.11",
+      "@types/morgan": "^1.9.2",
+      "@types/node": "^8.0.29",
+      "dotenv-safe": "^8.2.0",
+      "ts-node": "3.3.0",
+      "ts-node-dev": "^1.1.6",
+      "typescript": "3.3.3333"
+   }
+}
