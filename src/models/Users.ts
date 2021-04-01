@@ -1,4 +1,9 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn
+} from 'typeorm';
 import { v4 as uuid4 } from 'uuid';
 
 export interface IUsers {
@@ -10,29 +15,28 @@ export interface IUsers {
   createdAt: Date;
 }
 
-@Entity()
+@Entity('users')
 class Users implements IUsers {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('uuid')
   readonly id: string;
 
-  @Column({ name: 'email' })
-  _email: string;
+  @Column({ unique: true })
+  email: string;
 
-  @Column()
+  @Column({ select: false })
   password: string;
 
-  @Column()
-  displayName: string;
+  @Column({ nullable: true })
+  firstName: string;
 
-  @Column()
+  @Column({ nullable: true })
+  lastName: string;
+
+  @Column({ nullable: true })
   profilePicture: string;
 
   @CreateDateColumn()
   createdAt: Date;
-
-  get email() {
-    return this._email.toUpperCase();
-  }
 
   constructor() {
     if (!this.id) {

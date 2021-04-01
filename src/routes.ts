@@ -1,14 +1,11 @@
 import { Router } from 'express';
-import { abilitiesController } from './controllers/AbilitiesController';
-import { userController } from './controllers/UsersController';
+import { userController } from './controllers/UserController';
 
 const router = Router();
 
 // authentication
-router.post('/u', userController.signup);
-
-// abilities
-router.post('/abilities', abilitiesController.create);
-router.get('/abilities/:id', abilitiesController.getAbility);
+router.post('/u', userController.createAccount);
+router.get('/u', userController.getUser);
+router.delete('/u', userController.deleteAccount);
 
 export { router };
