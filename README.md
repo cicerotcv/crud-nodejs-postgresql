@@ -2,9 +2,11 @@
 
 ## Implemented endpoints
 
-    (CREATE)    POST    /users
-    (READ)      GET     /users (Headers must include Bearer Token)
-    (DELETE)    DELETE  /users (Headers must include Bearer Token)
+    (AUTHENTICATE)  POST    /auth
+    (CREATE)        POST    /users
+    (READ)          GET     /users (Headers must include Bearer Token)
+    (UPDATE)        PUT     /users (Headers must include Bearer Token)
+    (DELETE)        DELETE  /users (Headers must include Bearer Token)
 
 <!-- (UPDATE)    PUT     /users/:super_id -->
 

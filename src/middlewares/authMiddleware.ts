@@ -27,9 +27,7 @@ export function authMiddleware(
   try {
     const data = jwt.verify(token, process.env.APPLICATION_SECRET_KEY);
     const { id } = data as TokenPayload;
-
     req.userId = id;
-
     return next();
   } catch {
     return res.status(400).json({ error: 'Error during token validation' });

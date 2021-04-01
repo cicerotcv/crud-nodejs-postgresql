@@ -14,7 +14,7 @@ class AuthController {
     });
 
     if (!user) {
-      return res.send(401);
+      return res.status(401);
     }
 
     const isValidPassword = await bcrypt.compare(password, user.password);
@@ -29,7 +29,7 @@ class AuthController {
       { expiresIn: '1d' }
     );
 
-    delete user.password;
+    // delete user.password;
     return res.json({
       user,
       token

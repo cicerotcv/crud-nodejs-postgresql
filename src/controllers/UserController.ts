@@ -38,7 +38,24 @@ class UserController {
     const { userId } = req;
     const usersRepository = getRepository(Users);
     const user = await usersRepository.findOne(userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User does not exist' });
+    }
+    delete user.password;
     return res.json(user);
+  }
+
+  async updateUser(req: Request, res: Response) {
+    const { userId } = req;
+    const usersRepository = getRepository(Users);
+    const user = await usersRepository.findOne(userId);
+    // I believe there is another way. Maybe I shouldn't
+    // make two queries in order to update a user;
+    if (!user) {
+      return res.status(404).json({ error: 'User does not exist' });
+    }
+    await usersRepository.update(userId, { ...req.body });
+    return res.json({ ...user, ...req.body });
   }
 
   async deleteAccount(req: Request, res: Response) {
