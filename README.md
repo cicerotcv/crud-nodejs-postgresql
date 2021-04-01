@@ -1,6 +1,6 @@
 # crud-nodejs-postgresql
 
-## Implemented endpoints
+## Endpoints
 
     (AUTHENTICATE)  POST    /auth
     (CREATE)        POST    /users
