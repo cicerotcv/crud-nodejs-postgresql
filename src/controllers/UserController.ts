@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import * as jwt from 'jsonwebtoken';
 import { getRepository } from 'typeorm';
 import { Users } from '../models/Users';
 
@@ -31,7 +32,15 @@ class UserController {
       lastName
     });
     await usersRepository.save(user);
-    return res.json({ ...user });
+    delete user.password;
+
+    const token = jwt.sign(
+      { id: user.id },
+      process.env.APPLICATION_SECRET_KEY,
+      { expiresIn: '1d' }
+    );
+
+    return res.json({ user, token });
   }
 
   async getUser(req: Request, res: Response) {

@@ -13,8 +13,9 @@ class AuthController {
       where: { email }
     });
 
+    console.log(user);
     if (!user) {
-      return res.status(401);
+      return res.sendStatus(401);
     }
 
     const isValidPassword = await bcrypt.compare(password, user.password);
