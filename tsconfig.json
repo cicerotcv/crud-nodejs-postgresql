@@ -8,8 +8,9 @@
       "module": "commonjs",
       "moduleResolution": "node",
       "outDir": "./build",
-      "strictNullChecks": true,
+      "strictNullChecks": false,
       "strictPropertyInitialization": false,
+      "allowSyntheticDefaultImports": true,
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "sourceMap": true

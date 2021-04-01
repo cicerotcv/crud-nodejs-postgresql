@@ -1,10 +1,12 @@
+import { hashSync } from 'bcryptjs';
 import {
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn
 } from 'typeorm';
-import { v4 as uuid4 } from 'uuid';
 
 export interface IUsers {
   id: string;
@@ -23,7 +25,7 @@ class Users implements IUsers {
   @Column({ unique: true })
   email: string;
 
-  @Column({ select: false })
+  @Column({ select: true })
   password: string;
 
   @Column({ nullable: true })
@@ -38,10 +40,10 @@ class Users implements IUsers {
   @CreateDateColumn()
   createdAt: Date;
 
-  constructor() {
-    if (!this.id) {
-      this.id = uuid4().replace(/-/g, '');
-    }
+  @BeforeInsert()
+  @BeforeUpdate()
+  hashPassword() {
+    this.password = hashSync(this.password, 8);
   }
 }
 

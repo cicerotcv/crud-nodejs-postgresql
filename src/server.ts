@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import createConnection from './database';
 import { router } from './routes';
 import morgan = require('morgan');
+require('dotenv-safe').config();
 
 createConnection();
 

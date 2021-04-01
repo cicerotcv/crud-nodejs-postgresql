@@ -31,22 +31,20 @@ class UserController {
       lastName
     });
     await usersRepository.save(user);
-    return res.json({ ...user, password: undefined });
+    return res.json({ ...user });
   }
 
   async getUser(req: Request, res: Response) {
-    // ToDo: destructure from req directly thx to middleware
-    const { id } = req.body;
+    const { userId } = req;
     const usersRepository = getRepository(Users);
-    const user = await usersRepository.findOne(id);
+    const user = await usersRepository.findOne(userId);
     return res.json(user);
   }
 
   async deleteAccount(req: Request, res: Response) {
-    // ToDo: destructure from req directly thx to middleware
-    const { id } = req.body;
+    const { userId } = req;
     const usersRepository = getRepository(Users);
-    const deleteResponse = await usersRepository.delete(id);
+    const deleteResponse = await usersRepository.delete(userId);
     return res.json(deleteResponse);
   }
 }
